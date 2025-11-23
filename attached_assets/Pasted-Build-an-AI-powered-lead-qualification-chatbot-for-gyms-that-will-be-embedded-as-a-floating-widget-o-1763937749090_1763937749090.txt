@@ -1,0 +1,98 @@
+Build an AI-powered lead qualification chatbot for gyms that will be embedded as a floating widget on WordPress websites.
+
+PROJECT GOAL:
+Create a conversational chatbot that captures and qualifies gym leads 24/7, then embeds seamlessly on WordPress sites as a bottom-right chat widget (like Intercom or Drift).
+
+CONVERSATION FLOW:
+
+1. GREETING (friendly, energetic tone):
+   "Hey! 👋 Looking to get started with us? I can help you find the perfect fit. What brings you here today?"
+   - Options: Weight loss, Build muscle, General fitness, Personal training, Just browsing
+
+2. QUALIFICATION QUESTIONS (conversational, one at a time):
+   - "What's your current fitness level?" (Beginner / Some experience / Advanced)
+   - "What's your main goal?" (Free text input - e.g., "lose 20lbs", "train for marathon")
+   - "When are you looking to start?" (This week / Within a month / Just exploring)
+   - "What's your budget range for membership?" ($50-100/month, $100-200/month, $200+/month, Not sure yet)
+
+3. CONTACT CAPTURE:
+   - "Perfect! Let me get your info so we can send you details and pricing."
+   - Collect: Name, Email, Phone (with proper validation)
+
+4. TRIAL BOOKING:
+   - "Want to schedule a FREE 30-minute trial session?"
+   - If YES: Show calendar picker with time slots (Mon-Sat, 6am-8pm in 30-min increments)
+   - If NO: "No problem! We'll email you the info."
+
+5. CONFIRMATION:
+   - Show summary of their responses
+   - Display next steps (e.g., "Check your email for confirmation" or "We'll text you within 24 hours")
+   - Add celebratory confetti animation on booking confirmation
+
+TECHNICAL REQUIREMENTS:
+
+WIDGET EMBEDDING (CRITICAL):
+- Create TWO files:
+  1. Main chatbot app (the full interface)
+  2. Embeddable widget loader (single <script> tag for WordPress)
+
+- Widget should:
+  - Float in bottom-right corner of page (60px circular button with chat icon)
+  - Expand to 400px wide × 600px tall chat window on click
+  - Overlay on top of existing page content (z-index: 9999)
+  - Be mobile-responsive (full screen on mobile, widget on desktop)
+  - Close button to minimize back to chat bubble
+  - Show unread message indicator (optional but nice)
+
+DESIGN:
+- Modern gym aesthetic: bold, energetic colors (dark theme with teal/cyan accents)
+- Clean, premium look (not generic chatbot vibes)
+- Smooth animations and transitions
+- Progress indicator showing steps completed
+- Professional font choices
+
+DATA MANAGEMENT:
+- Store all lead responses in localStorage (for demo purposes)
+- Create simple admin panel (/admin route) showing:
+  - All captured leads in a table
+  - Export to CSV button
+  - Basic filtering (by date, goal, budget)
+  - Total lead count
+
+WORDPRESS INTEGRATION:
+- Provide clear instructions for embedding
+- Generate embeddable code snippet (script tag)
+- Ensure widget loads fast and doesn't conflict with WordPress themes
+- Test that it works in an iframe if needed as backup
+
+TECH STACK:
+- Use React with Tailwind CSS OR vanilla JavaScript (your choice for speed)
+- No external dependencies that require API keys
+- Self-contained and works standalone
+- Host-ready for Replit deployment
+
+TESTING REQUIREMENTS:
+After building, please test:
+1. Complete conversation flow from start to finish
+2. Widget open/close functionality
+3. Mobile responsiveness
+4. Data saves correctly to localStorage
+5. Admin panel displays leads
+6. CSV export works
+7. Embed code is ready to copy
+
+DELIVERABLES:
+1. Working chatbot with widget functionality
+2. Admin panel to view leads
+3. Embed code snippet (script tag) with instructions
+4. README with WordPress installation steps
+
+Build this step-by-step:
+STEP 1: Create the conversational chatbot UI and logic
+STEP 2: Add data capture and storage
+STEP 3: Build the widget wrapper (floating button + overlay)
+STEP 4: Create admin panel
+STEP 5: Generate embeddable script tag
+STEP 6: Test everything end-to-end
+
+This needs to be WordPress-ready and demo
