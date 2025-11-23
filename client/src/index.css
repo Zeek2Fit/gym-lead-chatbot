@@ -43,8 +43,8 @@
   --chart-3: 42.03 92.83% 56.27%;
   --chart-4: 147.14 78.50% 41.96%;
   --chart-5: 341.49 75.20% 50.98%;
-  --font-sans: 'Space Grotesk', sans-serif;
-  --font-serif: 'Geist', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Montserrat', sans-serif;
   --font-mono: 'Geist Mono', monospace;
   --radius: 0rem;
   --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00);

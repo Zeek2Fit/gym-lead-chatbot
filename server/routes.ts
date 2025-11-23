@@ -1,13 +1,92 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { insertLeadSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // put application routes here
-  // prefix all routes with /api
+  app.post("/api/leads", async (req, res) => {
+    try {
+      const validatedData = insertLeadSchema.parse(req.body);
+      const lead = await storage.createLead(validatedData);
+      res.status(201).json(lead);
+    } catch (error: any) {
+      if (error.name === "ZodError") {
+        res.status(400).json({ error: "Validation failed", details: error.errors });
+      } else {
+        res.status(500).json({ error: "Failed to create lead" });
+      }
+    }
+  });
 
-  // use storage to perform CRUD operations on the storage interface
-  // e.g. storage.insertUser(user) or storage.getUserByUsername(username)
+  app.get("/api/leads", async (req, res) => {
+    try {
+      const leads = await storage.getAllLeads();
+      res.json(leads);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch leads" });
+    }
+  });
+
+  app.get("/api/leads/export", async (req, res) => {
+    try {
+      const leads = await storage.getAllLeads();
+      
+      const headers = [
+        "Name",
+        "Email",
+        "Phone",
+        "Fitness Level",
+        "Goal",
+        "Timeline",
+        "Budget",
+        "Wants Trial",
+        "Trial Date",
+        "Trial Time",
+        "Created At",
+      ];
+      
+      const rows = leads.map((lead) => [
+        lead.name,
+        lead.email,
+        lead.phone,
+        lead.fitnessLevel,
+        lead.mainGoal,
+        lead.timeline,
+        lead.budget,
+        lead.wantsTrial,
+        lead.trialDate || "",
+        lead.trialTime || "",
+        new Date(lead.createdAt).toLocaleDateString(),
+      ]);
+
+      const csvContent = [
+        headers.join(","),
+        ...rows.map((row) => row.map((cell) => `"${cell}"`).join(",")),
+      ].join("\n");
+
+      res.setHeader("Content-Type", "text/csv");
+      res.setHeader(
+        "Content-Disposition",
+        `attachment; filename="dad-bod-reset-leads-${new Date().toISOString().split("T")[0]}.csv"`
+      );
+      res.send(csvContent);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to export leads" });
+    }
+  });
+
+  app.get("/api/leads/:id", async (req, res) => {
+    try {
+      const lead = await storage.getLeadById(req.params.id);
+      if (!lead) {
+        res.status(404).json({ error: "Lead not found" });
+        return;
+      }
+      res.json(lead);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch lead" });
+    }
+  });
 
   const httpServer = createServer(app);
 
