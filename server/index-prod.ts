@@ -7,7 +7,6 @@ import runApp from "./app";
 
 export async function serveStatic(app: Express, _server: Server) {
   const distPath = path.resolve(import.meta.dirname, "public");
-  const publicPath = path.resolve(import.meta.dirname, "..", "public");
 
   if (!fs.existsSync(distPath)) {
     throw new Error(
@@ -15,11 +14,15 @@ export async function serveStatic(app: Express, _server: Server) {
     );
   }
 
-  // Serve widget-loader.js from source with correct MIME type
+  // Serve widget-loader.js with correct MIME type
   app.get("/widget-loader.js", (_req, res) => {
-    const widgetPath = path.resolve(publicPath, "widget-loader.js");
-    res.type("application/javascript");
-    res.sendFile(widgetPath);
+    try {
+      const widgetContent = fs.readFileSync(path.resolve(distPath, "widget-loader.js"), "utf-8");
+      res.type("application/javascript").send(widgetContent);
+    } catch (error) {
+      console.error("Failed to serve widget-loader.js:", error);
+      res.status(404).send("Widget loader not found");
+    }
   });
 
   app.use(express.static(distPath));
