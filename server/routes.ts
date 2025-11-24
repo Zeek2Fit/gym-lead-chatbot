@@ -146,6 +146,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Analytics endpoints
+  app.post("/api/analytics/track", async (req, res) => {
+    try {
+      const { insertAnalyticsEventSchema } = await import("@shared/schema");
+      const validatedEvent = insertAnalyticsEventSchema.parse(req.body);
+      const event = await storage.trackEvent(validatedEvent);
+      res.json(event);
+    } catch (error: any) {
+      if (error.name === "ZodError") {
+        res.status(400).json({ error: "Invalid event data", details: error.errors });
+        return;
+      }
+      console.error("Analytics tracking error:", error);
+      res.status(500).json({ error: "Failed to track event" });
+    }
+  });
+
+  app.get("/api/analytics/stats", async (req, res) => {
+    try {
+      const stats = await storage.getAnalyticsStats();
+      res.json(stats);
+    } catch (error) {
+      console.error("Analytics stats error:", error);
+      res.status(500).json({ error: "Failed to fetch analytics stats" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

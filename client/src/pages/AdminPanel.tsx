@@ -13,9 +13,10 @@ import {
   SidebarMenuItem,
   SidebarProvider,
 } from "@/components/ui/sidebar";
-import { Download, Users, Calendar, DollarSign, TrendingUp, LayoutDashboard, FileText, Settings, ArrowLeft } from "lucide-react";
+import { Download, Users, Calendar, DollarSign, TrendingUp, LayoutDashboard, FileText, Settings, ArrowLeft, BarChart3 } from "lucide-react";
 import { Link } from "wouter";
 import LeadsTable from "@/components/LeadsTable";
+import AnalyticsDashboard from "@/components/AnalyticsDashboard";
 import type { Lead } from "@shared/schema";
 
 export default function AdminPanel() {
@@ -92,6 +93,7 @@ export default function AdminPanel() {
 
   const navItems = [
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, onClick: () => scrollToSection("dashboard") },
+    { id: "analytics", label: "Analytics", icon: BarChart3, onClick: () => setActiveSection("analytics") },
     { id: "leads", label: "Leads", icon: Users, onClick: () => scrollToSection("leads") },
     { id: "export", label: "Export", icon: FileText, onClick: handleExportCSV },
     { id: "settings", label: "Settings", icon: Settings, onClick: handleSettings },
@@ -146,22 +148,28 @@ export default function AdminPanel() {
         </Sidebar>
 
         <main className="flex-1 overflow-y-auto">
-          <div className="bg-card border-b border-border">
-            <div className="max-w-7xl mx-auto px-8 py-6">
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <h1 className="font-heading font-bold text-3xl" data-testid="text-admin-title">
-                    Lead Dashboard
-                  </h1>
-                  <p className="text-muted-foreground mt-1">
-                    Track and manage your Dad Bod Reset leads
-                  </p>
-                </div>
-                <Button
-                  onClick={handleExportCSV}
-                  disabled={filteredLeads.length === 0}
-                  data-testid="button-export-csv"
-                >
+          {activeSection === "analytics" ? (
+            <div className="max-w-7xl mx-auto px-8 py-8">
+              <AnalyticsDashboard />
+            </div>
+          ) : (
+            <>
+              <div className="bg-card border-b border-border">
+                <div className="max-w-7xl mx-auto px-8 py-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <h1 className="font-heading font-bold text-3xl" data-testid="text-admin-title">
+                        Lead Dashboard
+                      </h1>
+                      <p className="text-muted-foreground mt-1">
+                        Track and manage your Dad Bod Reset leads
+                      </p>
+                    </div>
+                    <Button
+                      onClick={handleExportCSV}
+                      disabled={filteredLeads.length === 0}
+                      data-testid="button-export-csv"
+                    >
                   <Download className="h-4 w-4 mr-2" />
                   Export CSV
                 </Button>
@@ -272,6 +280,8 @@ export default function AdminPanel() {
 
             <LeadsTable leads={filteredLeads} isLoading={isLoading} />
           </div>
+            </>
+          )}
         </main>
       </div>
     </SidebarProvider>
