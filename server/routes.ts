@@ -2,12 +2,19 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertLeadSchema } from "@shared/schema";
+import { emailService } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/leads", async (req, res) => {
     try {
       const validatedData = insertLeadSchema.parse(req.body);
       const lead = await storage.createLead(validatedData);
+      
+      // Send email notification to gym staff (non-blocking)
+      emailService.sendNewLeadNotification(lead).catch(err => {
+        console.error("Email notification failed (non-blocking):", err);
+      });
+      
       res.status(201).json(lead);
     } catch (error: any) {
       console.error("Error creating lead:", error);

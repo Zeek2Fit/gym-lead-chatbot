@@ -17,6 +17,12 @@ export class DatabaseStorage implements IStorage {
   private db;
 
   constructor() {
+    if (!process.env.DATABASE_URL) {
+      throw new Error(
+        "DATABASE_URL environment variable is required for database connection. " +
+        "Please ensure the database is provisioned and DATABASE_URL is set."
+      );
+    }
     const pool = new Pool({ connectionString: process.env.DATABASE_URL });
     this.db = drizzle(pool);
   }
