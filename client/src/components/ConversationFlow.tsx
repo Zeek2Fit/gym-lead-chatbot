@@ -17,15 +17,30 @@ export default function ConversationFlow() {
   const [messages, setMessages] = useState<ChatMessageType[]>([]);
   const [leadData, setLeadData] = useState<Partial<InsertLead>>({});
   const [isLeadSaved, setIsLeadSaved] = useState(false);
+  const [sessionId] = useState(() => `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`);
+  const [conversationStarted, setConversationStarted] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  const trackEvent = async (eventType: string) => {
+    try {
+      await apiRequest("POST", "/api/analytics/track", {
+        eventType,
+        sessionId,
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/analytics/stats"] });
+    } catch (error) {
+      console.error("Failed to track event:", error);
+    }
+  };
 
   const createLeadMutation = useMutation({
     mutationFn: async (data: InsertLead) => {
       return await apiRequest<Lead>("POST", "/api/leads", data);
     },
-    onSuccess: () => {
+    onSuccess: async () => {
       queryClient.invalidateQueries({ queryKey: ["/api/leads"] });
+      await trackEvent("conversation_complete");
       setIsLeadSaved(true);
     },
     onError: () => {
@@ -70,6 +85,11 @@ export default function ConversationFlow() {
   };
 
   const handleGreeting = (option: string) => {
+    if (!conversationStarted) {
+      trackEvent("conversation_start");
+      setConversationStarted(true);
+    }
+    
     let userResponse = "";
     switch (option) {
       case "weight_loss":
@@ -231,6 +251,8 @@ export default function ConversationFlow() {
   };
 
   const handleTrialBooked = (date: string, time: string) => {
+    trackEvent("trial_booked");
+    
     const updatedLeadData = { ...leadData, trialDate: date, trialTime: time };
     setLeadData(updatedLeadData);
     addUserMessage(`Booked for ${date} at ${time}`);
