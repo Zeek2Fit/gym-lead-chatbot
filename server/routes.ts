@@ -97,6 +97,55 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // AI chat endpoint for answering questions
+  app.post("/api/chat", async (req, res) => {
+    try {
+      const { question } = req.body;
+      
+      if (!question || typeof question !== "string") {
+        res.status(400).json({ error: "Question is required" });
+        return;
+      }
+
+      const { aiService } = await import("./ai");
+      const answer = await aiService.getChatResponse(question);
+      
+      res.json({ answer });
+    } catch (error: any) {
+      console.error("Chat error:", error);
+      res.status(500).json({ error: "Failed to process question" });
+    }
+  });
+
+  // AI chat streaming endpoint
+  app.post("/api/chat/stream", async (req, res) => {
+    try {
+      const { question } = req.body;
+      
+      if (!question || typeof question !== "string") {
+        res.status(400).json({ error: "Question is required" });
+        return;
+      }
+
+      const { aiService } = await import("./ai");
+      const stream = await aiService.getStreamingChatResponse(question);
+      
+      res.setHeader("Content-Type", "text/event-stream");
+      res.setHeader("Cache-Control", "no-cache");
+      res.setHeader("Connection", "keep-alive");
+
+      for await (const chunk of stream) {
+        res.write(`data: ${JSON.stringify({ content: chunk })}\n\n`);
+      }
+      
+      res.write("data: [DONE]\n\n");
+      res.end();
+    } catch (error: any) {
+      console.error("Chat streaming error:", error);
+      res.status(500).json({ error: "Failed to stream response" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;
