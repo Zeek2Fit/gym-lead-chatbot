@@ -1,0 +1,403 @@
+jquery-migrate.min.js?ver=3.4.1:2 JQMIGRATE: Migrate is installed, version 3.4.1
+fbevents.js:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+base.js:5386 [Violation] Permissions policy violation: compute-pressure is not allowed in this document.
+wV @ base.js:5386
+www.youtube.com/youtubei/v1/log_event?alt=json:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+www.youtube.com/youtubei/v1/log_event?alt=json:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+www.youtube.com/generate_204?hhmMaQ:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+www.youtube.com/youtubei/v1/log_event?alt=json:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENT
+VM159173:670  POST https://www.youtube.com/youtubei/v1/log_event?alt=json net::ERR_BLOCKED_BY_CLIENT
+send @ VM159173:670
+Pq @ www-embed-player.js:1230
+Tq @ www-embed-player.js:1235
+jw @ www-embed-player.js:1646
+p.sendAndWrite @ www-embed-player.js:1548
+iw.sendAndWrite @ www-embed-player.js:1641
+Q @ base.js:2095
+(anonymous) @ base.js:2103
+Promise.then
+g.Jk @ base.js:2103
+zcO @ base.js:2198
+Kwo @ base.js:2189
+(anonymous) @ base.js:2187
+g.gF @ base.js:1170
+Uh @ base.js:2187
+q @ base.js:2190
+(anonymous) @ base.js:2192
+(anonymous) @ base.js:1678
+setTimeout
+apply @ VM159173:5794
+g.y9 @ base.js:1702
+VA @ base.js:2217
+H1Y @ base.js:2192
+S2$ @ base.js:2183
+IlJ @ base.js:2180
+FF @ base.js:2227
+g.pB @ base.js:2229
+Fv.tick @ base.js:9084
+wr @ base.js:2553
+(anonymous) @ base.js:1678
+Kc @ base.js:2580
+g.e.tick @ base.js:12338
+g.e.omX @ base.js:12412
+g.e.q0 @ base.js:12409
+g.e.Mv @ base.js:8605
+setTimeout
+apply @ VM159173:5794
+g.DK @ base.js:1196
+g.e.start @ base.js:8602
+g.fI @ base.js:1497
+g.e.No @ base.js:12405
+g.e.publish @ base.js:8632
+Z1.publish @ base.js:10473
+g.e.publish @ base.js:10468
+g.e.bOD @ base.js:13626
+(anonymous) @ base.js:1678
+g.e.publish @ base.js:8632
+Z1.publish @ base.js:10473
+g.e.publish @ base.js:10468
+g.e.resize @ base.js:13415
+VM159173:670  POST https://www.youtube.com/youtubei/v1/log_event?alt=json net::ERR_BLOCKED_BY_CLIENT
+send @ VM159173:670
+Pq @ www-embed-player.js:1230
+Tq @ www-embed-player.js:1235
+jw @ www-embed-player.js:1646
+(anonymous) @ www-embed-player.js:1552
+Ea @ www-embed-player.js:37
+Fa.next @ www-embed-player.js:38
+b @ www-embed-player.js:42
+Promise.then
+f @ www-embed-player.js:44
+(anonymous) @ www-embed-player.js:45
+Ha @ www-embed-player.js:44
+B @ www-embed-player.js:46
+vv @ www-embed-player.js:1551
+(anonymous) @ www-embed-player.js:1549
+Ea @ www-embed-player.js:37
+Fa.next @ www-embed-player.js:38
+b @ www-embed-player.js:42
+Promise.then
+f @ www-embed-player.js:44
+(anonymous) @ www-embed-player.js:45
+Ha @ www-embed-player.js:44
+B @ www-embed-player.js:46
+(anonymous) @ www-embed-player.js:1549
+Tr @ www-embed-player.js:1305
+Yr @ www-embed-player.js:1314
+p.Cg @ www-embed-player.js:1308
+setTimeout
+apply @ VM159173:5794
+p.start @ www-embed-player.js:1315
+p.Xa @ www-embed-player.js:1298
+(anonymous) @ www-embed-player.js:1321
+setTimeout
+apply @ VM159173:5794
+is @ www-embed-player.js:1321
+ts.Xa @ www-embed-player.js:1334
+Nr.ra @ www-embed-player.js:1293
+p.wc @ www-embed-player.js:1549
+(anonymous) @ www-embed-player.js:1555
+Tr @ www-embed-player.js:1305
+Yr @ www-embed-player.js:1314
+p.Cg @ www-embed-player.js:1308
+setTimeout
+apply @ VM159173:5794
+p.start @ www-embed-player.js:1315
+p.Vf @ www-embed-player.js:1311
+VM159173:670  POST https://www.youtube.com/youtubei/v1/log_event?alt=json net::ERR_BLOCKED_BY_CLIENT
+send @ VM159173:670
+Pq @ www-embed-player.js:1230
+Tq @ www-embed-player.js:1235
+jw @ www-embed-player.js:1646
+(anonymous) @ www-embed-player.js:1552
+Ea @ www-embed-player.js:37
+Fa.next @ www-embed-player.js:38
+b @ www-embed-player.js:42
+Promise.then
+f @ www-embed-player.js:44
+(anonymous) @ www-embed-player.js:45
+Ha @ www-embed-player.js:44
+B @ www-embed-player.js:46
+vv @ www-embed-player.js:1551
+(anonymous) @ www-embed-player.js:1549
+Ea @ www-embed-player.js:37
+Fa.next @ www-embed-player.js:38
+b @ www-embed-player.js:42
+Promise.then
+f @ www-embed-player.js:44
+(anonymous) @ www-embed-player.js:45
+Ha @ www-embed-player.js:44
+B @ www-embed-player.js:46
+(anonymous) @ www-embed-player.js:1549
+Tr @ www-embed-player.js:1305
+Yr @ www-embed-player.js:1314
+p.Cg @ www-embed-player.js:1308
+setTimeout
+apply @ VM159173:5794
+p.start @ www-embed-player.js:1315
+p.Xa @ www-embed-player.js:1298
+(anonymous) @ www-embed-player.js:1321
+setTimeout
+apply @ VM159173:5794
+is @ www-embed-player.js:1321
+ts.Xa @ www-embed-player.js:1334
+Nr.ra @ www-embed-player.js:1293
+p.wc @ www-embed-player.js:1549
+(anonymous) @ www-embed-player.js:1549
+Ea @ www-embed-player.js:37
+Fa.next @ www-embed-player.js:38
+b @ www-embed-player.js:42
+Promise.then
+f @ www-embed-player.js:44
+Promise.then
+f @ www-embed-player.js:44
+(anonymous) @ www-embed-player.js:45
+Ha @ www-embed-player.js:44
+B @ www-embed-player.js:46
+(anonymous) @ www-embed-player.js:1549
+Tr @ www-embed-player.js:1305
+Yr @ www-embed-player.js:1314
+p.Cg @ www-embed-player.js:1308
+setTimeout
+apply @ VM159173:5794
+p.start @ www-embed-player.js:1315
+p.Xa @ www-embed-player.js:1298
+(anonymous) @ www-embed-player.js:1321
+setTimeout
+apply @ VM159173:5794
+is @ www-embed-player.js:1321
+ts.Xa @ www-embed-player.js:1334
+Nr.ra @ www-embed-player.js:1293
+p.wc @ www-embed-player.js:1549
+(anonymous) @ www-embed-player.js:1555
+Tr @ www-embed-player.js:1305
+Yr @ www-embed-player.js:1314
+p.Cg @ www-embed-player.js:1308
+setTimeout
+apply @ VM159173:5794
+p.start @ www-embed-player.js:1315
+p.Vf @ www-embed-player.js:1311
+VM159173:670  POST https://www.youtube.com/youtubei/v1/log_event?alt=json net::ERR_BLOCKED_BY_CLIENT
+send @ VM159173:670
+Pq @ www-embed-player.js:1230
+Tq @ www-embed-player.js:1235
+jw @ www-embed-player.js:1646
+(anonymous) @ www-embed-player.js:1552
+Ea @ www-embed-player.js:37
+Fa.next @ www-embed-player.js:38
+b @ www-embed-player.js:42
+Promise.then
+f @ www-embed-player.js:44
+(anonymous) @ www-embed-player.js:45
+Ha @ www-embed-player.js:44
+B @ www-embed-player.js:46
+vv @ www-embed-player.js:1551
+(anonymous) @ www-embed-player.js:1549
+Ea @ www-embed-player.js:37
+Fa.next @ www-embed-player.js:38
+b @ www-embed-player.js:42
+Promise.then
+f @ www-embed-player.js:44
+(anonymous) @ www-embed-player.js:45
+Ha @ www-embed-player.js:44
+B @ www-embed-player.js:46
+(anonymous) @ www-embed-player.js:1549
+Tr @ www-embed-player.js:1305
+Yr @ www-embed-player.js:1314
+p.Cg @ www-embed-player.js:1308
+setTimeout
+apply @ VM159173:5794
+p.start @ www-embed-player.js:1315
+p.Xa @ www-embed-player.js:1298
+(anonymous) @ www-embed-player.js:1321
+setTimeout
+apply @ VM159173:5794
+is @ www-embed-player.js:1321
+ts.Xa @ www-embed-player.js:1334
+Nr.ra @ www-embed-player.js:1293
+p.wc @ www-embed-player.js:1549
+(anonymous) @ www-embed-player.js:1549
+Ea @ www-embed-player.js:37
+Fa.next @ www-embed-player.js:38
+b @ www-embed-player.js:42
+Promise.then
+f @ www-embed-player.js:44
+Promise.then
+f @ www-embed-player.js:44
+(anonymous) @ www-embed-player.js:45
+Ha @ www-embed-player.js:44
+B @ www-embed-player.js:46
+(anonymous) @ www-embed-player.js:1549
+Tr @ www-embed-player.js:1305
+Yr @ www-embed-player.js:1314
+p.Cg @ www-embed-player.js:1308
+setTimeout
+apply @ VM159173:5794
+p.start @ www-embed-player.js:1315
+p.Xa @ www-embed-player.js:1298
+(anonymous) @ www-embed-player.js:1321
+setTimeout
+apply @ VM159173:5794
+is @ www-embed-player.js:1321
+ts.Xa @ www-embed-player.js:1334
+Nr.ra @ www-embed-player.js:1293
+p.wc @ www-embed-player.js:1549
+(anonymous) @ www-embed-player.js:1549
+Ea @ www-embed-player.js:37
+Fa.next @ www-embed-player.js:38
+b @ www-embed-player.js:42
+Promise.then
+f @ www-embed-player.js:44
+Promise.then
+f @ www-embed-player.js:44
+(anonymous) @ www-embed-player.js:45
+Ha @ www-embed-player.js:44
+B @ www-embed-player.js:46
+(anonymous) @ www-embed-player.js:1549
+Tr @ www-embed-player.js:1305
+Yr @ www-embed-player.js:1314
+p.Cg @ www-embed-player.js:1308
+setTimeout
+apply @ VM159173:5794
+p.start @ www-embed-player.js:1315
+p.Xa @ www-embed-player.js:1298
+(anonymous) @ www-embed-player.js:1321
+setTimeout
+apply @ VM159173:5794
+is @ www-embed-player.js:1321
+ts.Xa @ www-embed-player.js:1334
+Nr.ra @ www-embed-player.js:1293
+p.wc @ www-embed-player.js:1549
+(anonymous) @ www-embed-player.js:1555
+Tr @ www-embed-player.js:1305
+Yr @ www-embed-player.js:1314
+p.Cg @ www-embed-player.js:1308
+setTimeout
+apply @ VM159173:5794
+p.start @ www-embed-player.js:1315
+p.Vf @ www-embed-player.js:1311
+VM159173:670  POST https://www.youtube.com/youtubei/v1/log_event?alt=json net::ERR_BLOCKED_BY_CLIENT
+send @ VM159173:670
+Pq @ www-embed-player.js:1230
+Tq @ www-embed-player.js:1235
+jw @ www-embed-player.js:1646
+(anonymous) @ www-embed-player.js:1552
+Ea @ www-embed-player.js:37
+Fa.next @ www-embed-player.js:38
+b @ www-embed-player.js:42
+Promise.then
+f @ www-embed-player.js:44
+(anonymous) @ www-embed-player.js:45
+Ha @ www-embed-player.js:44
+B @ www-embed-player.js:46
+vv @ www-embed-player.js:1551
+(anonymous) @ www-embed-player.js:1549
+Ea @ www-embed-player.js:37
+Fa.next @ www-embed-player.js:38
+b @ www-embed-player.js:42
+Promise.then
+f @ www-embed-player.js:44
+(anonymous) @ www-embed-player.js:45
+Ha @ www-embed-player.js:44
+B @ www-embed-player.js:46
+(anonymous) @ www-embed-player.js:1549
+Tr @ www-embed-player.js:1305
+Yr @ www-embed-player.js:1314
+p.Cg @ www-embed-player.js:1308
+setTimeout
+apply @ VM159173:5794
+p.start @ www-embed-player.js:1315
+p.Xa @ www-embed-player.js:1298
+(anonymous) @ www-embed-player.js:1321
+setTimeout
+apply @ VM159173:5794
+is @ www-embed-player.js:1321
+ts.Xa @ www-embed-player.js:1334
+Nr.ra @ www-embed-player.js:1293
+p.wc @ www-embed-player.js:1549
+(anonymous) @ www-embed-player.js:1549
+Ea @ www-embed-player.js:37
+Fa.next @ www-embed-player.js:38
+b @ www-embed-player.js:42
+Promise.then
+f @ www-embed-player.js:44
+Promise.then
+f @ www-embed-player.js:44
+(anonymous) @ www-embed-player.js:45
+Ha @ www-embed-player.js:44
+B @ www-embed-player.js:46
+(anonymous) @ www-embed-player.js:1549
+Tr @ www-embed-player.js:1305
+Yr @ www-embed-player.js:1314
+p.Cg @ www-embed-player.js:1308
+setTimeout
+apply @ VM159173:5794
+p.start @ www-embed-player.js:1315
+p.Xa @ www-embed-player.js:1298
+(anonymous) @ www-embed-player.js:1321
+setTimeout
+apply @ VM159173:5794
+is @ www-embed-player.js:1321
+ts.Xa @ www-embed-player.js:1334
+Nr.ra @ www-embed-player.js:1293
+p.wc @ www-embed-player.js:1549
+(anonymous) @ www-embed-player.js:1549
+Ea @ www-embed-player.js:37
+Fa.next @ www-embed-player.js:38
+b @ www-embed-player.js:42
+Promise.then
+f @ www-embed-player.js:44
+Promise.then
+f @ www-embed-player.js:44
+(anonymous) @ www-embed-player.js:45
+Ha @ www-embed-player.js:44
+B @ www-embed-player.js:46
+(anonymous) @ www-embed-player.js:1549
+Tr @ www-embed-player.js:1305
+Yr @ www-embed-player.js:1314
+p.Cg @ www-embed-player.js:1308
+setTimeout
+apply @ VM159173:5794
+p.start @ www-embed-player.js:1315
+p.Xa @ www-embed-player.js:1298
+(anonymous) @ www-embed-player.js:1321
+setTimeout
+apply @ VM159173:5794
+is @ www-embed-player.js:1321
+ts.Xa @ www-embed-player.js:1334
+Nr.ra @ www-embed-player.js:1293
+p.wc @ www-embed-player.js:1549
+(anonymous) @ www-embed-player.js:1549
+Ea @ www-embed-player.js:37
+Fa.next @ www-embed-player.js:38
+b @ www-embed-player.js:42
+Promise.then
+f @ www-embed-player.js:44
+Promise.then
+f @ www-embed-player.js:44
+(anonymous) @ www-embed-player.js:45
+Ha @ www-embed-player.js:44
+B @ www-embed-player.js:46
+(anonymous) @ www-embed-player.js:1549
+Tr @ www-embed-player.js:1305
+Yr @ www-embed-player.js:1314
+p.Cg @ www-embed-player.js:1308
+setTimeout
+apply @ VM159173:5794
+p.start @ www-embed-player.js:1315
+p.Xa @ www-embed-player.js:1298
+(anonymous) @ www-embed-player.js:1321
+setTimeout
+apply @ VM159173:5794
+is @ www-embed-player.js:1321
+ts.Xa @ www-embed-player.js:1334
+Nr.ra @ www-embed-player.js:1293
+p.wc @ www-embed-player.js:1549
+(anonymous) @ www-embed-player.js:1555
+Tr @ www-embed-player.js:1305
+Yr @ www-embed-player.js:1314
+p.Cg @ www-embed-player.js:1308
+setTimeout
+apply @ VM159173:5794
+p.start @ www-embed-player.js:1315
+p.Vf @ www-embed-player.js:1311
