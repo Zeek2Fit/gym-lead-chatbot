@@ -8,6 +8,19 @@ An AI-powered conversational chatbot designed to qualify gym leads 24/7 for the 
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes
+
+**2025-11-24: Analytics Dashboard & AI Chat Integration**
+- Added analytics tracking system with `analyticsEvents` table (widget_open, conversation_start, conversation_complete, trial_booked)
+- Built Analytics Dashboard with Recharts funnel visualization showing conversion metrics
+- Integrated into Admin Panel with dedicated Analytics tab
+- Conversion funnel displays: Widget Opens → Conversations → Completed → Booked Trials
+- Conversion rate and booking rate calculations with progress bar visualizations
+- AI-powered chat endpoints using OpenAI GPT-4o-mini with BRAND_BIBLE.md context (/api/chat, /api/chat/stream)
+- Email notification system with test mode (nodemailer) for new lead alerts
+- Database migration to PostgreSQL (Neon) with WebSocket configuration
+- All lead data now persists across server restarts
+
 ## System Architecture
 
 ### Frontend Architecture
