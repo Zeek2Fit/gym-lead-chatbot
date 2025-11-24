@@ -10,10 +10,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const lead = await storage.createLead(validatedData);
       res.status(201).json(lead);
     } catch (error: any) {
+      console.error("Error creating lead:", error);
       if (error.name === "ZodError") {
         res.status(400).json({ error: "Validation failed", details: error.errors });
       } else {
-        res.status(500).json({ error: "Failed to create lead" });
+        res.status(500).json({ error: "Failed to create lead", details: error.message });
       }
     }
   });
@@ -22,8 +23,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const leads = await storage.getAllLeads();
       res.json(leads);
-    } catch (error) {
-      res.status(500).json({ error: "Failed to fetch leads" });
+    } catch (error: any) {
+      console.error("Error fetching leads:", error);
+      res.status(500).json({ error: "Failed to fetch leads", details: error.message });
     }
   });
 

@@ -1,5 +1,11 @@
-import { type Lead, type InsertLead } from "@shared/schema";
-import { randomUUID } from "crypto";
+import { type Lead, type InsertLead, leads } from "@shared/schema";
+import { drizzle } from "drizzle-orm/neon-serverless";
+import { Pool, neonConfig } from "@neondatabase/serverless";
+import { desc, eq } from "drizzle-orm";
+import ws from "ws";
+
+// Configure WebSocket for Node.js environment
+neonConfig.webSocketConstructor = ws;
 
 export interface IStorage {
   createLead(lead: InsertLead): Promise<Lead>;
@@ -7,33 +13,27 @@ export interface IStorage {
   getLeadById(id: string): Promise<Lead | undefined>;
 }
 
-export class MemStorage implements IStorage {
-  private leads: Map<string, Lead>;
+export class DatabaseStorage implements IStorage {
+  private db;
 
   constructor() {
-    this.leads = new Map();
+    const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+    this.db = drizzle(pool);
   }
 
   async createLead(insertLead: InsertLead): Promise<Lead> {
-    const id = randomUUID();
-    const lead: Lead = {
-      ...insertLead,
-      id,
-      createdAt: new Date(),
-    };
-    this.leads.set(id, lead);
+    const [lead] = await this.db.insert(leads).values(insertLead).returning();
     return lead;
   }
 
   async getAllLeads(): Promise<Lead[]> {
-    return Array.from(this.leads.values()).sort(
-      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
+    return await this.db.select().from(leads).orderBy(desc(leads.createdAt));
   }
 
   async getLeadById(id: string): Promise<Lead | undefined> {
-    return this.leads.get(id);
+    const [lead] = await this.db.select().from(leads).where(eq(leads.id, id));
+    return lead;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();

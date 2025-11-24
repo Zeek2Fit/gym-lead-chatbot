@@ -64,19 +64,26 @@ Preferred communication style: Simple, everyday language.
 
 ### Data Storage Solutions
 
-**Current Implementation**: In-memory storage (`MemStorage` class)
-- Map-based storage for rapid development and testing
-- Stores leads with UUID generation
-- Sorted retrieval by creation date
+**Current Implementation**: PostgreSQL Database via Drizzle ORM
+- Using Neon Serverless PostgreSQL (`@neondatabase/serverless`)
+- DatabaseStorage class implements IStorage interface
+- WebSocket connection configured for Node.js environment
+- Connection pool using DATABASE_URL environment variable
 
-**Production-Ready Schema**: PostgreSQL via Drizzle ORM
-- Schema defined in `shared/schema.ts` for Neon Database
+**Database Schema**: 
+- Schema defined in `shared/schema.ts`
 - Table structure:
-  - `leads` table with fields: id, name, email, phone, fitness_level, main_goal, timeline, budget, wants_trial, trial_date, trial_time, created_at
-- Drizzle configuration points to `DATABASE_URL` environment variable
-- Migration files generated in `/migrations` directory
+  - `leads` table with fields: id (varchar UUID), name, email, phone, fitness_level, main_goal, timeline, budget, wants_trial, trial_date, trial_time, created_at
+- Pushed to database using `npm run db:push`
+- Drizzle ORM for type-safe queries with Zod validation
 
 **Storage Interface**: `IStorage` interface enables swapping storage implementations without changing application logic
+
+**Migration Notes**:
+- Migrated from MemStorage to DatabaseStorage on 2025-11-24
+- Fixed WebSocket configuration issue for Neon serverless driver
+- All API endpoints now persist to PostgreSQL database
+- Data survives server restarts
 
 ### External Dependencies
 
