@@ -7,12 +7,20 @@ import runApp from "./app";
 
 export async function serveStatic(app: Express, _server: Server) {
   const distPath = path.resolve(import.meta.dirname, "public");
+  const publicPath = path.resolve(import.meta.dirname, "..", "public");
 
   if (!fs.existsSync(distPath)) {
     throw new Error(
       `Could not find the build directory: ${distPath}, make sure to build the client first`,
     );
   }
+
+  // Serve widget-loader.js from source with correct MIME type
+  app.get("/widget-loader.js", (_req, res) => {
+    const widgetPath = path.resolve(publicPath, "widget-loader.js");
+    res.type("application/javascript");
+    res.sendFile(widgetPath);
+  });
 
   app.use(express.static(distPath));
 
