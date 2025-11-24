@@ -14,18 +14,31 @@ export async function serveStatic(app: Express, _server: Server) {
     );
   }
 
-  // Serve widget-loader.js with correct MIME type
+  // Serve widget-loader.js BEFORE static middleware with correct MIME type and CORS headers
   app.get("/widget-loader.js", (_req, res) => {
     try {
       const widgetContent = fs.readFileSync(path.resolve(distPath, "widget-loader.js"), "utf-8");
-      res.type("application/javascript").send(widgetContent);
+      res.set({
+        "Content-Type": "application/javascript; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET",
+        "Cache-Control": "public, max-age=3600"
+      });
+      res.send(widgetContent);
     } catch (error) {
       console.error("Failed to serve widget-loader.js:", error);
       res.status(404).send("Widget loader not found");
     }
   });
 
-  app.use(express.static(distPath));
+  // Static files middleware for other assets
+  app.use(express.static(distPath, {
+    setHeaders: (res, path) => {
+      if (path.endsWith('.js')) {
+        res.set('Content-Type', 'application/javascript; charset=utf-8');
+      }
+    }
+  }));
 
   // fall through to index.html if the file doesn't exist
   app.use("*", (_req, res) => {
