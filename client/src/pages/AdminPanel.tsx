@@ -68,7 +68,7 @@ export default function AdminPanel() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `dad-bod-reset-leads-${new Date().toISOString().split("T")[0]}.csv`;
+      a.download = `leads-export-${new Date().toISOString().split("T")[0]}.csv`;
       a.click();
       URL.revokeObjectURL(url);
     } catch (error) {
@@ -138,7 +138,7 @@ export default function AdminPanel() {
 
             <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-sidebar-border">
               <p className="text-xs text-sidebar-foreground/60">
-                Dad Bod Reset Admin
+                Gym Lead Chatbot Admin
               </p>
               <p className="text-xs text-sidebar-foreground/60 mt-1">
                 v1.0.0
@@ -162,7 +162,7 @@ export default function AdminPanel() {
                         Lead Dashboard
                       </h1>
                       <p className="text-muted-foreground mt-1">
-                        Track and manage your Dad Bod Reset leads
+                        Track and manage your gym leads
                       </p>
                     </div>
                     <Button

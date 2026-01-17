@@ -1,8 +1,8 @@
-# Dad Bod Reset - Lead Qualification Chatbot
+# Gym Lead Chatbot
 
 ## Overview
 
-An AI-powered conversational chatbot designed to qualify gym leads 24/7 for the Dad Bod Reset fitness program. The chatbot embeds as a floating widget on WordPress websites (similar to Intercom/Drift) and guides visitors through a qualification flow covering fitness goals, timeline, budget, and trial session booking. Built with React, Express, and designed for seamless embedding via a single script tag.
+An AI-powered conversational chatbot designed to qualify gym leads 24/7 for any fitness business. The chatbot embeds as a floating widget on websites (similar to Intercom/Drift) and guides visitors through a qualification flow covering fitness goals, timeline, budget, and trial session booking. Built with React, Express, and designed for seamless embedding via a single script tag. Fully customizable through the `shared/config.ts` configuration file.
 
 ## User Preferences
 
@@ -129,11 +129,10 @@ Preferred communication style: Simple, everyday language.
 - Express sessions with cookie-based authentication
 
 **Brand Integration**:
-- Brand personality defined in `BRAND_BIBLE.md`
-- Core philosophy: "Transformations built on small, consistent habits"
-- Signature frameworks: 4 Pillars (Sleep, Steps, Strength, Smart Fuel)
-- Training programs: Dad Bod Reset (12-week), Maintenance Mode, 30-Day Reboot, Garage Gym Minimalist
-- Chatbot responses should reflect brand voice: direct, no-BS, dad humor, faith-integrated where appropriate
+- Brand configuration centralized in `shared/config.ts`
+- Optional brand personality can be defined in `BRAND_BIBLE.md` (see `docs/BRAND_BIBLE_EXAMPLE.md`)
+- Customizable: brand name, tagline, colors, conversation copy
+- Chatbot responses can be configured to match any gym's brand voice
 
 ### Path Aliases
 

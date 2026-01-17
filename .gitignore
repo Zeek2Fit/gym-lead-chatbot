@@ -4,3 +4,21 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Environment files (keep secrets private)
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Database files
+*.db
+*.sqlite
+
+# IDE
+.idea
+.vscode
+
+# Logs
+*.log
+npm-debug.log*

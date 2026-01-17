@@ -1,26 +1,31 @@
 import OpenAI from "openai";
-import { readFileSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import { join } from "path";
+import { brandName, programName } from "@shared/config";
 
-// Load brand bible for system prompt
-const brandBible = readFileSync(join(process.cwd(), "BRAND_BIBLE.md"), "utf-8");
+// Load brand bible for system prompt if it exists
+const brandBiblePath = join(process.cwd(), "BRAND_BIBLE.md");
+const brandBible = existsSync(brandBiblePath) 
+  ? readFileSync(brandBiblePath, "utf-8") 
+  : "";
 
-const systemPrompt = `You are a conversational assistant for Dad Bod Reset, a fitness coaching program for busy dads.
+// Configurable system prompt - customize this for your gym/fitness brand
+const systemPrompt = `You are a conversational assistant for ${brandName}, a fitness coaching program.
 
 ${brandBible}
 
 ## Your Role
 You help answer questions about:
-- Dad Bod Reset programs and training philosophy
+- ${programName} offerings and training philosophy
 - Nutrition advice (protein targets, meal prep, what to avoid)
 - Training splits and workout structure
 - Common fitness myths
-- How to balance fitness with family life
+- How to balance fitness with everyday life
 
 ## Tone & Style
 - Warm, relatable, encouraging
 - No-BS, direct advice
-- Dad humor is welcome
+- Friendly and approachable
 - Short responses (2-3 paragraphs max)
 - Never shame anyone's starting point
 - Celebrate the decision to start
@@ -31,7 +36,7 @@ You help answer questions about:
 - Don't use pushy sales language
 - Don't overcomplicate things
 
-Keep responses conversational, practical, and grounded in the Dad Bod Reset philosophy: sustainable progress through stupidly consistent small habits.`;
+Keep responses conversational, practical, and focused on sustainable progress through consistent small habits.`;
 
 export class AIService {
   private openai: OpenAI | null = null;

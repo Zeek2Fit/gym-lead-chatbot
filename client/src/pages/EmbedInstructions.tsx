@@ -6,7 +6,7 @@ import { Copy, Check, Code, FileCode } from "lucide-react";
 export default function EmbedInstructions() {
   const [copied, setCopied] = useState(false);
 
-  const embedCode = `<!-- Dad Bod Reset Chatbot Widget -->
+  const embedCode = `<!-- Gym Lead Chatbot Widget -->
 <script>
   (function() {
     var chatbotScript = document.createElement('script');
@@ -25,9 +25,9 @@ export default function EmbedInstructions() {
   return (
     <div className="max-w-4xl mx-auto p-8">
       <div className="mb-8">
-        <h1 className="font-heading font-bold text-3xl mb-2">WordPress Integration</h1>
+        <h1 className="font-heading font-bold text-3xl mb-2">Website Integration</h1>
         <p className="text-muted-foreground">
-          Add the Dad Bod Reset chatbot to your WordPress website in under 2 minutes
+          Add the lead chatbot to your website in under 2 minutes
         </p>
       </div>
 

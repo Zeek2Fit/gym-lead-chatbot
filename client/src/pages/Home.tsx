@@ -2,6 +2,7 @@ import ChatWidget from "@/components/ChatWidget";
 import { Button } from "@/components/ui/button";
 import { Dumbbell, Target, Clock, Users } from "lucide-react";
 import { Link } from "wouter";
+import { brandName } from "@shared/config";
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
             <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center">
               <Dumbbell className="h-5 w-5 text-primary-foreground" />
             </div>
-            <h1 className="font-heading font-bold text-xl">Dad Bod Reset</h1>
+            <h1 className="font-heading font-bold text-xl">{brandName}</h1>
           </div>
           <Link href="/admin">
             <Button variant="outline" data-testid="link-admin">
@@ -25,10 +26,10 @@ export default function Home() {
       <main className="max-w-6xl mx-auto px-6 py-16">
         <div className="text-center mb-16">
           <h2 className="font-heading font-bold text-4xl md:text-5xl mb-4">
-            Transform Your Dad Bod
+            Start Your Fitness Journey
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Sustainable fat loss and muscle gain for busy dads. No quick fixes, just real compound lifts and whole foods.
+            Sustainable fitness and strength training designed for real results. No quick fixes, just proven methods that work.
           </p>
         </div>
 
@@ -37,9 +38,9 @@ export default function Home() {
             <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <Target className="h-6 w-6 text-primary" />
             </div>
-            <h3 className="font-semibold text-lg mb-2">4 Pillars System</h3>
+            <h3 className="font-semibold text-lg mb-2">Goal-Focused Training</h3>
             <p className="text-muted-foreground">
-              Sleep, Steps, Strength, and Smart Fuel - the foundation of lasting transformation
+              Personalized programs designed around your specific fitness goals
             </p>
           </div>
 
@@ -47,9 +48,9 @@ export default function Home() {
             <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <Clock className="h-6 w-6 text-primary" />
             </div>
-            <h3 className="font-semibold text-lg mb-2">Under 45 Minutes</h3>
+            <h3 className="font-semibold text-lg mb-2">Efficient Workouts</h3>
             <p className="text-muted-foreground">
-              Workouts designed for busy dads - real results without living in the gym
+              Time-effective sessions designed for busy schedules - real results without living in the gym
             </p>
           </div>
 
@@ -57,9 +58,9 @@ export default function Home() {
             <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <Users className="h-6 w-6 text-primary" />
             </div>
-            <h3 className="font-semibold text-lg mb-2">Dad-First Approach</h3>
+            <h3 className="font-semibold text-lg mb-2">Expert Coaching</h3>
             <p className="text-muted-foreground">
-              Training around nap schedules, meals kids will eat, and zero guilt
+              Professional guidance and support to help you reach your full potential
             </p>
           </div>
         </div>

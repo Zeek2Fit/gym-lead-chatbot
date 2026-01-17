@@ -2,6 +2,7 @@ import { X, Minus, Dumbbell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import ConversationFlow from "./ConversationFlow";
+import { brandName, tagline } from "@shared/config";
 
 interface ChatWindowProps {
   onClose: () => void;
@@ -18,10 +19,10 @@ export default function ChatWindow({ onClose, onMinimize }: ChatWindowProps) {
           </div>
           <div>
             <h2 className="font-heading font-bold text-base text-primary-foreground" data-testid="text-chat-title">
-              Dad Bod Reset
+              {brandName}
             </h2>
             <p className="text-xs text-primary-foreground/80">
-              Let's find your perfect fit
+              {tagline}
             </p>
           </div>
         </div>

@@ -1,8 +1,8 @@
-# Dad Bod Reset Chatbot Widget - Design Guidelines
+# Gym Lead Chatbot Widget - Design Guidelines
 
 ## Design Approach
 
-**Reference-Based**: Drawing inspiration from Intercom and Drift for widget mechanics, combined with fitness app aesthetics (like Future, MyFitnessPal premium) and the authentic, no-BS personality of the Dad Bod Reset brand. This isn't a corporate chatbot—it's a coaching conversation.
+**Reference-Based**: Drawing inspiration from Intercom and Drift for widget mechanics, combined with fitness app aesthetics (like Future, MyFitnessPal premium). This is a conversational lead qualification chatbot designed to feel like a personal coaching conversation, not a corporate support chat.
 
 ## Typography System
 
@@ -169,3 +169,7 @@ No hero images required for this chat widget interface. The chatbot is a convers
 - Empty states in admin: Illustration of clipboard or analytics dashboard
 
 The emphasis is on clean, functional design that feels like a personal coaching conversation, not a corporate support chat.
+
+## Customization
+
+All brand-specific content (name, tagline, colors, conversation copy) can be customized in `shared/config.ts`. This allows the chatbot to be adapted for any gym or fitness business without modifying the core components.

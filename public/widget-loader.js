@@ -1,8 +1,8 @@
 /**
- * Dad Bod Reset - Lead Qualification Chatbot Widget
- * Embed this script on your WordPress site:
+ * Gym Lead Chatbot Widget
+ * Embed this script on your website:
  * 
- * <script src="https://your-app.replit.dev/widget-loader.js"></script>
+ * <script src="https://your-app-url.com/widget-loader.js"></script>
  * 
  * The widget will automatically appear in the bottom-right corner (desktop)
  * or fullscreen (mobile).
@@ -21,7 +21,7 @@
     return window.location.origin;
   })();
 
-  const WIDGET_ID = 'dad-bod-reset-widget-' + Math.random().toString(36).substr(2, 9);
+  const WIDGET_ID = 'gym-lead-chatbot-widget-' + Math.random().toString(36).substr(2, 9);
   const SESSION_ID = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
 
   // Inject CSS
@@ -107,7 +107,7 @@
   const button = document.createElement('button');
   button.id = WIDGET_ID + '-button';
   button.textContent = '💬';
-  button.setAttribute('aria-label', 'Open Dad Bod Reset chatbot');
+  button.setAttribute('aria-label', 'Open fitness chatbot');
   button.setAttribute('title', 'Chat with us!');
 
   // Create container

@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import type { Lead } from "@shared/schema";
+import { brandName } from "@shared/config";
 
 export class EmailService {
   private transporter;
@@ -32,7 +33,7 @@ export class EmailService {
       return;
     }
 
-    const gymStaffEmail = process.env.GYM_STAFF_EMAIL || "admin@dadbod.reset.com";
+    const gymStaffEmail = process.env.GYM_STAFF_EMAIL || "admin@yourgym.com";
 
     const trialInfo = lead.wantsTrial === "yes" && lead.trialDate && lead.trialTime
       ? `
@@ -62,7 +63,7 @@ export class EmailService {
 <body>
   <div class="container">
     <div class="header">
-      <div class="logo">💪 Dad Bod Reset</div>
+      <div class="logo">💪 ${brandName}</div>
       <h2 style="color: #14B8A6; margin-top: 10px;">New Lead Captured!</h2>
     </div>
 
@@ -112,7 +113,7 @@ export class EmailService {
 
     try {
       await this.transporter.sendMail({
-        from: process.env.SMTP_FROM || '"Dad Bod Reset" <noreply@dadbodreset.com>',
+        from: process.env.SMTP_FROM || `"${brandName}" <noreply@yourgym.com>`,
         to: gymStaffEmail,
         subject: `🔥 New Lead: ${lead.name} - ${lead.mainGoal}`,
         html: emailHtml,

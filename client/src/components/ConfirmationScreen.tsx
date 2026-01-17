@@ -20,7 +20,7 @@ export default function ConfirmationScreen({ leadData }: ConfirmationScreenProps
           <p className="text-muted-foreground text-sm">
             {leadData.wantsTrial === "yes"
               ? "Check your email for your trial session confirmation"
-              : "Check your email for the 7-Day Dad Bod Kickstart PDF"}
+              : "Check your email for program details and next steps"}
           </p>
         </div>
       </div>
@@ -76,7 +76,7 @@ export default function ConfirmationScreen({ leadData }: ConfirmationScreenProps
         <ul className="space-y-2 text-sm text-muted-foreground">
           <li className="flex items-start gap-2">
             <span className="text-primary mt-0.5">•</span>
-            <span>Check your email for the 7-Day Dad Bod Kickstart PDF</span>
+            <span>Check your email for program details and next steps</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-0.5">•</span>
@@ -88,13 +88,13 @@ export default function ConfirmationScreen({ leadData }: ConfirmationScreenProps
           </li>
           <li className="flex items-start gap-2">
             <span className="text-primary mt-0.5">•</span>
-            <span>Start small, stay consistent - your transformation begins now</span>
+            <span>Start small, stay consistent - your fitness journey begins now</span>
           </li>
         </ul>
       </Card>
 
       <p className="text-center text-xs text-muted-foreground italic">
-        "Transformations that last are built on small, stupidly consistent habits—not 75-day punishments."
+        "Lasting results are built on small, consistent habits."
       </p>
     </div>
   );

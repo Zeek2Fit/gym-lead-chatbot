@@ -10,6 +10,7 @@ import CalendarPicker from "./CalendarPicker";
 import ConfirmationScreen from "./ConfirmationScreen";
 import ProgressIndicator from "./ProgressIndicator";
 import type { ConversationStep, ChatMessage as ChatMessageType, InsertLead, Lead } from "@shared/schema";
+import { conversationCopy, programName, featureFlags } from "@shared/config";
 import confetti from "canvas-confetti";
 
 export default function ConversationFlow() {
@@ -36,7 +37,7 @@ export default function ConversationFlow() {
 
   const createLeadMutation = useMutation({
     mutationFn: async (data: InsertLead) => {
-      return await apiRequest<Lead>("POST", "/api/leads", data);
+      return await apiRequest("POST", "/api/leads", data);
     },
     onSuccess: async () => {
       queryClient.invalidateQueries({ queryKey: ["/api/leads"] });
@@ -46,7 +47,7 @@ export default function ConversationFlow() {
     onError: () => {
       toast({
         title: "Oops!",
-        description: "Failed to save your information. Please try again.",
+        description: conversationCopy.errors.saveFailed,
         variant: "destructive",
       });
     },
@@ -59,9 +60,7 @@ export default function ConversationFlow() {
   }, [messages]);
 
   useEffect(() => {
-    addBotMessage(
-      "Hey! Looking to finally ditch the dad bod and build some real strength? You're in the right place. I'll help you find a plan that actually fits your life.\n\nWhat brings you here today?"
-    );
+    addBotMessage(conversationCopy.greeting);
   }, []);
 
   const addBotMessage = (content: string) => {
@@ -90,52 +89,23 @@ export default function ConversationFlow() {
       setConversationStarted(true);
     }
     
-    let userResponse = "";
-    switch (option) {
-      case "weight_loss":
-        userResponse = "Sustainable fat loss";
-        break;
-      case "build_muscle":
-        userResponse = "Build muscle and strength";
-        break;
-      case "general_fitness":
-        userResponse = "General fitness and health";
-        break;
-      case "personal_training":
-        userResponse = "Personal training";
-        break;
-      case "browsing":
-        userResponse = "Just browsing";
-        break;
-    }
+    const optionKey = option as keyof typeof conversationCopy.greetingOptions;
+    const userResponse = conversationCopy.greetingOptions[optionKey] || option;
     addUserMessage(userResponse);
     
     setTimeout(() => {
-      addBotMessage(
-        "Perfect! That's exactly what we specialize in. Our Dad Bod Reset program is built on the 4 Pillars: Sleep, Steps, Strength, and Smart Fuel.\n\nWhat's your current fitness level?"
-      );
+      addBotMessage(conversationCopy.fitnessLevelPrompt);
       setCurrentStep("fitness_level");
     }, 500);
   };
 
   const handleFitnessLevel = (level: string) => {
-    let userResponse = "";
-    let botResponse = "";
+    const levelKey = level as keyof typeof conversationCopy.fitnessLevelOptions;
+    const userResponse = conversationCopy.fitnessLevelOptions[levelKey] || level;
     
-    switch (level) {
-      case "beginner":
-        userResponse = "Beginner - just getting started";
-        botResponse = "No worries! Everyone starts somewhere. The best part? Beginners often see the fastest results when they stay consistent.\n\nWhat's your main goal? (Be specific - e.g., 'lose 20lbs', 'deadlift 300lbs', 'run a 5K')";
-        break;
-      case "some_experience":
-        userResponse = "Some experience - getting back into it";
-        botResponse = "Welcome back! Muscle memory is real - you'll be surprised how quickly things click again.\n\nWhat's your main goal? (Be specific - e.g., 'lose 20lbs', 'deadlift 300lbs', 'run a 5K')";
-        break;
-      case "advanced":
-        userResponse = "Advanced - looking to optimize";
-        botResponse = "Solid! Ready to take it to the next level. Let's dial in your training and nutrition for maximum results.\n\nWhat's your main goal? (Be specific - e.g., 'lose 20lbs', 'deadlift 300lbs', 'run a 5K')";
-        break;
-    }
+    const responseKey = level as keyof typeof conversationCopy.fitnessLevelResponses;
+    const levelResponse = conversationCopy.fitnessLevelResponses[responseKey] || "";
+    const botResponse = `${levelResponse}\n\n${conversationCopy.goalPrompt}`;
     
     setLeadData((prev) => ({ ...prev, fitnessLevel: level }));
     addUserMessage(userResponse);
@@ -151,31 +121,18 @@ export default function ConversationFlow() {
     addUserMessage(goal);
     
     setTimeout(() => {
-      addBotMessage(
-        "Love it! That's a clear target. Transformations that last are built on small, stupidly consistent habits - not 75-day punishments.\n\nWhen are you looking to start?"
-      );
+      addBotMessage(conversationCopy.timelinePrompt);
       setCurrentStep("timeline");
     }, 500);
   };
 
   const handleTimeline = (timeline: string) => {
-    let userResponse = "";
-    let botResponse = "";
+    const timelineKey = timeline as keyof typeof conversationCopy.timelineOptions;
+    const userResponse = conversationCopy.timelineOptions[timelineKey] || timeline;
     
-    switch (timeline) {
-      case "this_week":
-        userResponse = "This week - ready to go!";
-        botResponse = "THAT'S what I'm talking about! Your future self is already thanking you.\n\nWhat's your budget range for membership?";
-        break;
-      case "within_month":
-        userResponse = "Within the next month";
-        botResponse = "Perfect timing! Let's get you set up for success.\n\nWhat's your budget range for membership?";
-        break;
-      case "just_exploring":
-        userResponse = "Just exploring my options";
-        botResponse = "Smart move! Knowledge first, then action. Let's see what works for your situation.\n\nWhat's your budget range for membership?";
-        break;
-    }
+    const responseKey = timeline as keyof typeof conversationCopy.timelineResponses;
+    const timelineResponse = conversationCopy.timelineResponses[responseKey] || "";
+    const botResponse = `${timelineResponse}\n\n${conversationCopy.budgetPrompt}`;
     
     setLeadData((prev) => ({ ...prev, timeline }));
     addUserMessage(userResponse);
@@ -187,29 +144,14 @@ export default function ConversationFlow() {
   };
 
   const handleBudget = (budget: string) => {
-    let userResponse = "";
-    switch (budget) {
-      case "$50-100":
-        userResponse = "$50-100/month";
-        break;
-      case "$100-200":
-        userResponse = "$100-200/month";
-        break;
-      case "$200+":
-        userResponse = "$200+/month";
-        break;
-      case "not_sure":
-        userResponse = "Not sure yet";
-        break;
-    }
+    const budgetKey = budget as keyof typeof conversationCopy.budgetOptions;
+    const userResponse = conversationCopy.budgetOptions[budgetKey] || budget;
     
     setLeadData((prev) => ({ ...prev, budget }));
     addUserMessage(userResponse);
     
     setTimeout(() => {
-      addBotMessage(
-        "Got it! Let me get your contact info so we can send you the details, pricing options, and our free 7-Day Dad Bod Kickstart guide."
-      );
+      addBotMessage(conversationCopy.contactPrompt);
       setCurrentStep("contact_info");
     }, 500);
   };
@@ -219,10 +161,20 @@ export default function ConversationFlow() {
     addUserMessage(`${contactData.name}\n${contactData.email}\n${contactData.phone}`);
     
     setTimeout(() => {
-      addBotMessage(
-        "Awesome! One last thing - want to schedule a FREE 30-minute trial session? It's the best way to experience what we're all about and meet the team. No pressure, just pure value."
-      );
-      setCurrentStep("trial_booking");
+      if (featureFlags.enableTrialBooking) {
+        addBotMessage(conversationCopy.trialPrompt);
+        setCurrentStep("trial_booking");
+      } else {
+        const updatedLeadData = { ...leadData, ...contactData, wantsTrial: "no" };
+        setLeadData(updatedLeadData);
+        setCurrentStep("confirmation");
+        if (featureFlags.enableConfetti) {
+          triggerConfetti();
+        }
+        if (!isLeadSaved && isLeadDataComplete(updatedLeadData)) {
+          createLeadMutation.mutate(updatedLeadData as InsertLead);
+        }
+      }
     }, 500);
   };
 
@@ -241,7 +193,9 @@ export default function ConversationFlow() {
       
       setTimeout(() => {
         setCurrentStep("confirmation");
-        triggerConfetti();
+        if (featureFlags.enableConfetti) {
+          triggerConfetti();
+        }
         
         if (!isLeadSaved && isLeadDataComplete(updatedLeadData)) {
           createLeadMutation.mutate(updatedLeadData as InsertLead);
@@ -259,7 +213,9 @@ export default function ConversationFlow() {
     
     setTimeout(() => {
       setCurrentStep("confirmation");
-      triggerConfetti();
+      if (featureFlags.enableConfetti) {
+        triggerConfetti();
+      }
       
       if (!isLeadSaved && isLeadDataComplete(updatedLeadData)) {
         createLeadMutation.mutate(updatedLeadData as InsertLead);
@@ -320,7 +276,7 @@ export default function ConversationFlow() {
             className="w-full"
             data-testid="button-yes-trial"
           >
-            Yes, Book Trial
+            {conversationCopy.trialButtons.yes}
           </Button>
           <Button
             onClick={() => handleTrialChoice(false)}
@@ -328,7 +284,7 @@ export default function ConversationFlow() {
             className="w-full"
             data-testid="button-no-trial"
           >
-            No Thanks
+            {conversationCopy.trialButtons.no}
           </Button>
         </div>
       );
@@ -358,7 +314,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-weight-loss"
             >
-              <span className="text-[15px]">Sustainable fat loss</span>
+              <span className="text-[15px]">{conversationCopy.greetingOptions.weight_loss}</span>
             </Button>
             <Button
               onClick={() => handleGreeting("build_muscle")}
@@ -366,7 +322,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-build-muscle"
             >
-              <span className="text-[15px]">Build muscle and strength</span>
+              <span className="text-[15px]">{conversationCopy.greetingOptions.build_muscle}</span>
             </Button>
             <Button
               onClick={() => handleGreeting("general_fitness")}
@@ -374,7 +330,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-general-fitness"
             >
-              <span className="text-[15px]">General fitness and health</span>
+              <span className="text-[15px]">{conversationCopy.greetingOptions.general_fitness}</span>
             </Button>
             <Button
               onClick={() => handleGreeting("personal_training")}
@@ -382,7 +338,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-personal-training"
             >
-              <span className="text-[15px]">Personal training</span>
+              <span className="text-[15px]">{conversationCopy.greetingOptions.personal_training}</span>
             </Button>
             <Button
               onClick={() => handleGreeting("browsing")}
@@ -390,7 +346,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-browsing"
             >
-              <span className="text-[15px]">Just browsing</span>
+              <span className="text-[15px]">{conversationCopy.greetingOptions.browsing}</span>
             </Button>
           </div>
         )}
@@ -403,7 +359,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-beginner"
             >
-              <span className="text-[15px]">Beginner - just getting started</span>
+              <span className="text-[15px]">{conversationCopy.fitnessLevelOptions.beginner}</span>
             </Button>
             <Button
               onClick={() => handleFitnessLevel("some_experience")}
@@ -411,7 +367,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-some-experience"
             >
-              <span className="text-[15px]">Some experience - getting back into it</span>
+              <span className="text-[15px]">{conversationCopy.fitnessLevelOptions.some_experience}</span>
             </Button>
             <Button
               onClick={() => handleFitnessLevel("advanced")}
@@ -419,7 +375,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-advanced"
             >
-              <span className="text-[15px]">Advanced - looking to optimize</span>
+              <span className="text-[15px]">{conversationCopy.fitnessLevelOptions.advanced}</span>
             </Button>
           </div>
         )}
@@ -461,7 +417,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-this-week"
             >
-              <span className="text-[15px]">This week - ready to go!</span>
+              <span className="text-[15px]">{conversationCopy.timelineOptions.this_week}</span>
             </Button>
             <Button
               onClick={() => handleTimeline("within_month")}
@@ -469,7 +425,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-within-month"
             >
-              <span className="text-[15px]">Within the next month</span>
+              <span className="text-[15px]">{conversationCopy.timelineOptions.within_month}</span>
             </Button>
             <Button
               onClick={() => handleTimeline("just_exploring")}
@@ -477,7 +433,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-just-exploring"
             >
-              <span className="text-[15px]">Just exploring my options</span>
+              <span className="text-[15px]">{conversationCopy.timelineOptions.just_exploring}</span>
             </Button>
           </div>
         )}
@@ -490,7 +446,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-budget-50-100"
             >
-              <span className="text-[15px]">$50-100/month</span>
+              <span className="text-[15px]">{conversationCopy.budgetOptions["$50-100"]}</span>
             </Button>
             <Button
               onClick={() => handleBudget("$100-200")}
@@ -498,7 +454,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-budget-100-200"
             >
-              <span className="text-[15px]">$100-200/month</span>
+              <span className="text-[15px]">{conversationCopy.budgetOptions["$100-200"]}</span>
             </Button>
             <Button
               onClick={() => handleBudget("$200+")}
@@ -506,7 +462,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-budget-200-plus"
             >
-              <span className="text-[15px]">$200+/month</span>
+              <span className="text-[15px]">{conversationCopy.budgetOptions["$200+"]}</span>
             </Button>
             <Button
               onClick={() => handleBudget("not_sure")}
@@ -514,7 +470,7 @@ export default function ConversationFlow() {
               className="w-full justify-start text-left h-auto py-3"
               data-testid="button-budget-not-sure"
             >
-              <span className="text-[15px]">Not sure yet</span>
+              <span className="text-[15px]">{conversationCopy.budgetOptions.not_sure}</span>
             </Button>
           </div>
         )}
